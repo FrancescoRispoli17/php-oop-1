@@ -2,13 +2,12 @@
 
 class Movies{
 
-    public function __construct(private string $title, private string $country, private string $director, private string $genre, public bool $watched)
+    public function __construct(private string $title, private string $country, private string $director, private string $genre)
     {
         $this->title=$title;
         $this->country=$country;
         $this->director=$director;
         $this->genre=$genre;
-        $this->watched=false;
     }
     public function __destruct()
     {
@@ -17,19 +16,49 @@ class Movies{
     public function getTitle(){
         return $this->title;
     }
+    public function setTitle($text){
+        if (!is_string($text))
+            throw new Exception('Attenzione, devi passare una stringa');
+        else
+            $this->title=$text;
+    }
     public function getCountry(){
         return $this->country;
+    }
+    public function setCountry($text){
+        if (!is_string($text))
+            throw new Exception('Attenzione, devi passare una stringa');
+        else
+            $this->country=$text;
     }
     public function getDirector(){
         return $this->director;
     }
+    public function setDirector($text){
+        if (!is_string($text))
+            throw new Exception('Attenzione, devi passare una stringa');
+        else
+            $this->director=$text;
+    }
     public function getGenre(){
         return $this->genre;
+    }
+    public function setGenre($text){
+        if (!is_string($text))
+            throw new Exception('Attenzione, devi passare una stringa');
+        else
+            $this->genre=$text;
     }
 }
 
 $halloween= new Movies('Halloween','USA','Jhon Carpenter','horror',true);
 $mad_max= new Movies('Mad Max Fury Road', 'USA','George Miller', 'action',true);
+
+// try{
+//     echo $halloween->setTitle(5);
+// }catch(Exception $error){
+//     echo $error->getMessage();
+// }
 // var_dump($halloween);
 // echo '<hr>'.$halloween->getTitle();
 
