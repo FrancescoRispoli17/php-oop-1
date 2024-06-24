@@ -2,7 +2,7 @@
 
 class Movies{
 
-    public function __construct(private string $title, private string $country, private string $director, private string $genre)
+    public function __construct(private string $title, private string $country, private string $director, private array $genre)
     {
         $this->title=$title;
         $this->country=$country;
@@ -51,15 +51,15 @@ class Movies{
     }
 }
 
-$halloween= new Movies('Halloween','USA','Jhon Carpenter','horror',true);
-$mad_max= new Movies('Mad Max Fury Road', 'USA','George Miller', 'action',true);
+$halloween= new Movies('Halloween','USA','Jhon Carpenter',['horror']);
+$mad_max= new Movies('Mad Max Fury Road', 'USA','George Miller', ['action','post apocalyptic']);
 
 // try{
 //     echo $halloween->setTitle(5);
 // }catch(Exception $error){
 //     echo $error->getMessage();
 // }
-// var_dump($halloween);
+ var_dump($mad_max);
 // echo '<hr>'.$halloween->getTitle();
 
 ?>
@@ -76,6 +76,10 @@ $mad_max= new Movies('Mad Max Fury Road', 'USA','George Miller', 'action',true);
 <body>
     <div class="container py-5">
         <div class="row">
+            <div class="col-12">
+            <label for="exampleFormControlInput1" class="form-label">Email address</label>
+            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+            </div>
             <div class="col-6 text-center fs-4 fw-semibold">
                 <div><?php echo $halloween->getTitle(); ?> </div>
                 <div><?php echo $halloween->getCountry(); ?> </div>
