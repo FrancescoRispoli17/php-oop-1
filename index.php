@@ -1,6 +1,24 @@
 <?php
 
+class Movies{
 
+    public function __construct(private string $title, private string $country, private string $director, private string $genre, private bool $watched)
+    {
+        $this->title=$title;
+        $this->country=$country;
+        $this->director=$director;
+        $this->genre=$genre;
+        $this->watched=false;
+    }
+    public function __destruct()
+    {
+        
+    }
+}
+
+$halloween= new Movies('Halloween','USA','Jhon Carpenter','horror',true);
+
+var_dump($halloween);
 
 ?>
 
