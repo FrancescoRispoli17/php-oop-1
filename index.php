@@ -2,7 +2,7 @@
 
 class Movies{
 
-    public function __construct(private string $title, private string $country, private string $director, private string $genre, private bool $watched)
+    public function __construct(private string $title, private string $country, private string $director, private string $genre, public bool $watched)
     {
         $this->title=$title;
         $this->country=$country;
@@ -14,11 +14,24 @@ class Movies{
     {
         
     }
+    public function getTitle(){
+        return $this->title;
+    }
+    public function getCountry(){
+        return $this->country;
+    }
+    public function getDirector(){
+        return $this->director;
+    }
+    public function getGenre(){
+        return $this->genre;
+    }
 }
 
 $halloween= new Movies('Halloween','USA','Jhon Carpenter','horror',true);
-
-var_dump($halloween);
+$mad_max= new Movies('Mad Max Fury Road', 'USA','George Miller', 'action',true);
+// var_dump($halloween);
+// echo '<hr>'.$halloween->getTitle();
 
 ?>
 
@@ -32,6 +45,21 @@ var_dump($halloween);
     <title>Class Movie</title>
 </head>
 <body>
-    
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-6 text-center fs-4 fw-semibold">
+                <div><?php echo $halloween->getTitle(); ?> </div>
+                <div><?php echo $halloween->getCountry(); ?> </div>
+                <div><?php echo $halloween->getDirector(); ?> </div>
+                <div><?php echo $halloween->getGenre(); ?> </div>
+            </div>
+            <div class="col-6 text-center fs-4 fw-semibold">
+                <div><?php echo $mad_max->getTitle(); ?> </div>
+                <div><?php echo $mad_max->getCountry(); ?> </div>
+                <div><?php echo $mad_max->getDirector(); ?> </div>
+                <div><?php echo $mad_max->getGenre(); ?> </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
