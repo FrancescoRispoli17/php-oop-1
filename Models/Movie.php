@@ -3,14 +3,13 @@ require_once __DIR__ . '/Actor.php';
 
 class Movie{
     private array $genre=[];
-    private $actors;
+    private ?Actor $actors=null;
 
-    public function __construct(private string $title, private string $country, private string $director, Actor $actors )
+    public function __construct(private string $title, private string $country, private string $director )
     {
         $this->title=$title;
         $this->country=$country;
         $this->director=$director;
-        $this->actors=$actors;
     }
     public function __destruct()
     {
@@ -53,16 +52,13 @@ class Movie{
         else
             $this->genre = [...$this->genre, ...$text];
     }
-    public function getActor(){
+    public function getActor(): ?Actor{
         return $this->actors;
     }
-    // public function setActor(string ...$text)
-    // {
-    //     if (!is_array($text))
-    //         throw new Exception('Attenzione, devi passare una stringa');
-    //     else
-    //         $this->actors = [...$this->actors, ...$text];
-    // }
+     public function setActor(Actor $text)
+     {
+        $this->actors=$text;
+     }
 }
 
 ?>

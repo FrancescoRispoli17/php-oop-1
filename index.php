@@ -4,8 +4,9 @@ require_once __DIR__ . '/Models/Movie.php';
  try{
     $actor1= new Actor('Tom','Hardy','USA');
     $actor2= new Actor('Jamie ','Lee Curtis','USA');
-    $halloween= new Movie('Halloween','USA','Jhon Carpenter',$actor1);
-    $mad_max= new Movie('Mad Max Fury Road', 'USA','George Miller',$actor2);
+    $halloween= new Movie('Halloween','USA','Jhon Carpenter');
+    $mad_max= new Movie('Mad Max Fury Road', 'USA','George Miller');
+    $halloween->setActor($actor2);
     $halloween->setGenre('Horror');
     $mad_max->setGenre('action', 'post apocalict');
     $movies=[$halloween,$mad_max];
@@ -73,9 +74,9 @@ require_once __DIR__ . '/Models/Movie.php';
                         <div><?php echo $genre; ?> </div>
                     <?php endforeach; ?>
                     <h2>Actors</h2>
-                    <span><?php echo $movie->getActor()->getName(); ?> </span>
-                    <span><?php echo $movie->getActor()->getSurname(); ?> </span>
-                    <div>nationality: <?php echo $movie->getActor()->getNationality(); ?> </div>
+                    <span><?php echo $movie->getActor()?->getName(); ?> </span>
+                    <span><?php echo $movie->getActor()?->getSurname()?? 'nome non trovato'; ?> </span>
+                    <div>nationality:<?php echo $movie->getActor()?->getNationality() ?? 'non trovato'; ?> </div>
                 </div>
             <?php endforeach; ?>
         </div>
