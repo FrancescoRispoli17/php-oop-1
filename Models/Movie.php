@@ -4,9 +4,11 @@ require_once __DIR__ . '/Actor.php';
 class Movie{
     private array $genre=[];
     private ?Actor $actors=null;
+    private static int $id=0;
 
     public function __construct(private string $title, private string $country, private string $director )
     {
+        $this->id=self::$id++;
         $this->title=$title;
         $this->country=$country;
         $this->director=$director;

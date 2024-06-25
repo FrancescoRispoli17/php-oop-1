@@ -10,6 +10,7 @@ require_once __DIR__ . '/Models/Movie.php';
     $halloween->setGenre('Horror');
     $mad_max->setGenre('action', 'post apocalict');
     $movies=[$halloween,$mad_max];
+    var_dump($halloween);
  }catch(Exception $error){
     echo $error->getMessage();
  }
