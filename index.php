@@ -1,66 +1,20 @@
 <?php
+require_once __DIR__ . '/Models/Movie.php';
 
-class Movies{
+ try{
+    $actor1= new Actor('Tom','Hardy','USA');
+    $actor2= new Actor('Jamie ','Lee Curtis','USA');
+    $halloween= new Movie('Halloween','USA','Jhon Carpenter',$actor1);
+    $mad_max= new Movie('Mad Max Fury Road', 'USA','George Miller',$actor2);
+    $halloween->setGenre('Horror');
+    $mad_max->setGenre('action', 'post apocalict');
+    $movies=[$halloween,$mad_max];
+ }catch(Exception $error){
+    echo $error->getMessage();
+ }
 
-    public function __construct(private string $title, private string $country, private string $director, private array $genre)
-    {
-        $this->title=$title;
-        $this->country=$country;
-        $this->director=$director;
-        $this->genre=$genre;
-    }
-    public function __destruct()
-    {
-        
-    }
-    public function getTitle(){
-        return $this->title;
-    }
-    public function setTitle($text){
-        if (!is_string($text))
-            throw new Exception('Attenzione, devi passare una stringa');
-        else
-            $this->title=$text;
-    }
-    public function getCountry(){
-        return $this->country;
-    }
-    public function setCountry($text){
-        if (!is_string($text))
-            throw new Exception('Attenzione, devi passare una stringa');
-        else
-            $this->country=$text;
-    }
-    public function getDirector(){
-        return $this->director;
-    }
-    public function setDirector($text){
-        if (!is_string($text))
-            throw new Exception('Attenzione, devi passare una stringa');
-        else
-            $this->director=$text;
-    }
-    public function getGenre(){
-        return $this->genre;
-    }
-    public function setGenre($text){
-        if (!is_string($text))
-            throw new Exception('Attenzione, devi passare una stringa');
-        else
-            $this->genre=$text;
-    }
-}
 
-$halloween= new Movies('Halloween','USA','Jhon Carpenter',['horror']);
-$mad_max= new Movies('Mad Max Fury Road', 'USA','George Miller', ['action','post apocalyptic']);
 
-// try{
-//     echo $halloween->setTitle(5);
-// }catch(Exception $error){
-//     echo $error->getMessage();
-// }
- var_dump($mad_max);
-// echo '<hr>'.$halloween->getTitle();
 
 ?>
 
@@ -76,22 +30,54 @@ $mad_max= new Movies('Mad Max Fury Road', 'USA','George Miller', ['action','post
 <body>
     <div class="container py-5">
         <div class="row">
-            <div class="col-12">
-            <label for="exampleFormControlInput1" class="form-label">Email address</label>
-            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
-            </div>
-            <div class="col-6 text-center fs-4 fw-semibold">
-                <div><?php echo $halloween->getTitle(); ?> </div>
-                <div><?php echo $halloween->getCountry(); ?> </div>
-                <div><?php echo $halloween->getDirector(); ?> </div>
-                <div><?php echo $halloween->getGenre(); ?> </div>
-            </div>
-            <div class="col-6 text-center fs-4 fw-semibold">
-                <div><?php echo $mad_max->getTitle(); ?> </div>
-                <div><?php echo $mad_max->getCountry(); ?> </div>
-                <div><?php echo $mad_max->getDirector(); ?> </div>
-                <div><?php echo $mad_max->getGenre(); ?> </div>
-            </div>
+                <!-- <h1>Add Movie</h1>
+                <form action="index.php" method="GET">
+                    <div class="row align-items-center">
+                        <div class="col-3 px-5">
+                            <label for="exampleFormControlInput1" class="form-label">Title</label>
+                            <input type="text" class="form-control" id="exampleFormControlInput1" name="title">
+                        </div>
+                        <div class="col-2 px-1">
+                            <label for="exampleFormControlInput1" class="form-label">Country</label>
+                                <select class="form-select" aria-label="Default select example">
+                                    <option selected>Open this select menu</option>
+                                    <option value="1">USA</option>
+                                    <option value="Italy">Italy</option>
+                                    <option value="Japon">Japon</option>
+                                    <option value="Korea">Korea</option>
+                                    <option value="Germany">Germany</option>
+                                    <option value="France">France</option>
+                                    <option value="Denmark">Denmark</option>
+                                    <option value="China">China</option>
+                                </select>
+                        </div>
+                        <div class="col-3 px-5">
+                            <label for="exampleFormControlInput1" class="form-label">Director</label>
+                            <input type="text" class="form-control" id="exampleFormControlInput1" name="Director">
+                        </div>
+                        <div class="col-2 px-1">
+                            <label for="exampleFormControlInput1" class="form-label">Genre</label>
+                            <input type="text" class="form-control" id="exampleFormControlInput1" name="genre">
+                        </div>
+                        <div class="col">
+                            <button type="button" class="btn btn-primary mt-4">Primary</button>
+                        </div>
+                    </div>
+                </form> -->
+            <?php foreach( $movies as $movie) : ?>
+                <div class="col-6 text-center fs-4 fw-semibold">
+                    <div><?php echo $movie->getTitle(); ?> </div>
+                    <div><?php echo $movie->getCountry(); ?> </div>
+                    <div><?php echo $movie->getDirector(); ?> </div>
+                    <?php foreach( $movie->getGenre() as $genre) : ?>
+                        <div><?php echo $genre; ?> </div>
+                    <?php endforeach; ?>
+                    <h2>Actors</h2>
+                    <span><?php echo $movie->getActor()->getName(); ?> </span>
+                    <span><?php echo $movie->getActor()->getSurname(); ?> </span>
+                    <div>nationality: <?php echo $movie->getActor()->getNationality(); ?> </div>
+                </div>
+            <?php endforeach; ?>
         </div>
     </div>
 </body>
